@@ -1,11 +1,11 @@
-package TurntablConsultancyModelling;
+package io.turntableconsultancy;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Register {
     private List<Client> clientRegister;
-
 
     public Register(List<Client> clientRegister) {
         this.clientRegister = clientRegister;
@@ -19,12 +19,9 @@ public class Register {
         return clientRegister.stream().filter(client -> client.getId() == clientID).map(client -> client.getName()).findFirst().orElse("No client with supplied ID");
     }
 
-    public void countByServiceLevel(){
-        int goldStream = clientRegister.stream().filter(client -> client.getServiceLevel() == ServiceLevel.Gold).collect(Collectors.toList()).size();
-        int platinumStream = clientRegister.stream().filter(client -> client.getServiceLevel() == ServiceLevel.Platinum).collect(Collectors.toList()).size();
-        int premiumStream = clientRegister.stream().filter(client -> client.getServiceLevel() == ServiceLevel.Premium).collect(Collectors.toList()).size();
-        System.out.println(goldStream + " Gold clients, " + platinumStream + " Platinum clients, and " + premiumStream + " Premium clients.");
-        return;
+    public Map<ServiceLevel, Long> countByServiceLevel(){
+        return clientRegister.stream().collect(Collectors.groupingBy(Client::getServiceLevel, Collectors.counting()));
+//      return clientRegister.stream().map(Client::getServiceLevel).collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
     }
 
     public List<Client> getClientRegister() {
@@ -41,5 +38,4 @@ public class Register {
                 "clientRegister=" + clientRegister +
                 '}';
     }
-
 }

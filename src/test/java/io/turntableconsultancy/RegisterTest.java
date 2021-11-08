@@ -1,13 +1,14 @@
-package io.turntabl;
+package io.turntableconsultancy;
 
-import TurntablConsultancyModelling.*;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +22,8 @@ public class RegisterTest {
     List<Client> clientsList = new ArrayList<>();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp()  {
+
     }
 
     @Test
@@ -34,10 +36,10 @@ public class RegisterTest {
         clientsList.add(humanOne);
         clientsList.add(humanTwo);
         clientsList.add(goldmanSachs);
-
+        clientsList.add(fidelityBank);
         turntablRegister = new Register(clientsList);
 
-        //assertEquals("Mac-Noble",turntablRegister.getNameByServiceLevel(ServiceLevel.Gold).get(0));
+        assertEquals("Mac-Noble",turntablRegister.getNameByServiceLevel(ServiceLevel.Gold).get(0));
     }
 
     @Test
@@ -72,6 +74,13 @@ public class RegisterTest {
         clientsList.add(humanTwo);
         clientsList.add(fidelityBank);
         clientsList.add(goldmanSachs);
+
+        Map<ServiceLevel, Long> clientMap = new HashMap<>();
+        clientMap.put(ServiceLevel.Premium, 2L);
+        clientMap.put(ServiceLevel.Platinum,1L);
+        clientMap.put(ServiceLevel.Gold,1L);
+
+        assertEquals(clientMap,turntablRegister.countByServiceLevel());
 
     }
 }

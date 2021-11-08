@@ -1,4 +1,4 @@
-package TurntablConsultancyModelling;
+package io.turntableconsultancy;
 
 
 public class Corporate extends Client{

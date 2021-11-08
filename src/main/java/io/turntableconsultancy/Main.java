@@ -1,4 +1,4 @@
-package TurntablConsultancyModelling;
+package io.turntableconsultancy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +24,10 @@ public class Main {
 
         turntablRegister = new Register(clientsList);
         System.out.println(turntablRegister.getNameByID("419"));
+
+        System.out.println(turntablRegister.countByServiceLevel());
+
+
 
     }
 }

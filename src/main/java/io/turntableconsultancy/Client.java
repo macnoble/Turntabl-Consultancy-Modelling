@@ -1,4 +1,4 @@
-package TurntablConsultancyModelling;
+package io.turntableconsultancy;
 
 public abstract class Client {
     private String name;
@@ -26,5 +26,15 @@ public abstract class Client {
 
     public void setServiceLevel(ServiceLevel serviceLevel) {
         this.serviceLevel = serviceLevel;
+    }
+
+    @Override
+    public String
+    toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", serviceLevel=" + serviceLevel +
+                '}';
     }
 }
